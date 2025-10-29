@@ -15,3 +15,4 @@
 ![螢幕擷取畫面 2025-10-29 113733](https://github.com/user-attachments/assets/8887022b-e4c2-45b0-ae0d-fb5b7270a39e)
 ## 三、實作
 ### 1.先讓gpt給一個簡單html介面
+<img width="942" height="741" alt="image" src="https://github.com/user-attachments/assets/5f9a7fd3-f8b3-46e3-8c32-652e31253c5c" />
