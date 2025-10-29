@@ -21,7 +21,7 @@
         
 <img width="1919" height="966" alt="image" src="https://github.com/user-attachments/assets/0619d210-3cae-472f-a660-83c2f2619aca" />
 
-  ### 2.或是提出其他個人化修改方案
+  ### 2.修改樣式
   
   <img width="931" height="745" alt="螢幕擷取畫面 2025-10-29 134657" src="https://github.com/user-attachments/assets/d81b0cab-2186-4a55-8fcc-26262359b44b" />
   <img width="1902" height="913" alt="image" src="https://github.com/user-attachments/assets/22965ad3-a615-4ea2-91be-3d8b44f5f04c" />
