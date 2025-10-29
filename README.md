@@ -13,3 +13,4 @@
   - 這些需求之後都可以用自然語言告訴 ChatGPT，讓它幫我們生成程式碼。
 ## 二、實作步驟
 
+![螢幕擷取畫面 2025-10-29 113733](https://github.com/user-attachments/assets/8887022b-e4c2-45b0-ae0d-fb5b7270a39e)
