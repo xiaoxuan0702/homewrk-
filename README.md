@@ -21,6 +21,6 @@
         
 <img width="1919" height="966" alt="image" src="https://github.com/user-attachments/assets/0619d210-3cae-472f-a660-83c2f2619aca" />
 
-   ### 2.
+   ### 2.或是提出其他個人化修改方案
 
 <img width="835" height="788" alt="image" src="https://github.com/user-attachments/assets/b0cc1151-4e92-4b7e-90d0-32789d6286b6" />
