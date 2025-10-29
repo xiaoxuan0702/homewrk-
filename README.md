@@ -39,3 +39,4 @@
 <img width="1898" height="912" alt="image" src="https://github.com/user-attachments/assets/cfaf741e-9c7e-485f-a927-cddf76e24518" />
 
    ### 5.測試與調整
+<img width="1902" height="913" alt="image" src="https://github.com/user-attachments/assets/e1f8b8fa-3c29-4229-80c6-765ebc536675" />
