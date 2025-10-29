@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>用戶註冊 | User Register</title>
+<style>
+  /* 基本樣式 */
+  body {
+    font-family: "Microsoft JhengHei", sans-serif;
+    background: #f5f6fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 10px;
+  }
+
+  .register-container {
+    background: white;
+    padding: 30px 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    width: 380px;
+    max-width: 100%;
+  }
+
+  h2 { text-align: center; margin-bottom: 20px; font-size: 1.5em; }
+
+  label { display: block; margin-top: 10px; font-size: 0.95em; }
+
+  .input-group { position: relative; }
+
+  input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 0.95em;
+  }
+
+  .toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    color: #555;
+  }
+
+  .valid { border-color: green; }
+  .invalid { border-color: red; }
+
+  .status-icon {
+    position: absolute;
+    right: 35px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 16px;
+  }
+
+  .strength-bar {
+    height: 5px;
+    width: 100%;
+    margin-top: 5px;
+    border-radius: 3px;
+    background: #ddd;
+  }
+  .strength-bar div { height: 100%; border-radius: 3px; }
+
+  .lang-switch { text-align: right; margin-bottom: 10px; }
+  select { padding: 5px; border-radius: 5px; }
+
+  button {
+    margin-top: 20px;
+    width: 100%;
+    padding: 10px;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+  }
+  button:hover { background: #45a049; }
+
+  .hint { font-size: 13px; color: red; display: none; }
+
+  /* ===== 響應式設計 ===== */
+  @media (max-width: 480px) {
+    .register-container { padding: 25px 15px; }
+    h2 { font-size: 1.3em; }
+    input { font-size: 0.9em; padding: 8px; }
+    button { font-size: 0.95em; padding: 9px; }
+    .status-icon { font-size: 14px; right: 30px; }
+    .toggle-password { font-size: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="register-container">
+  <div class="lang-switch">
+    🌐 <select id="langSelect">
+      <option value="zh">繁體中文</option>
+      <option value="en">English</option>
+    </select>
+  </div>
+
+  <h2 id="title">用戶註冊</h2>
+  <form id="registerForm">
+    <label id="labelUsername">使用者名稱：</label>
+    <div class="input-group">
+      <input type="text" id="username" required />
+      <span class="status-icon" id="icon-username"></span>
+    </div>
+
+    <label id="labelEmail">電子郵件：</label>
+    <div class="input-group">
+      <input type="email" id="email" required />
+      <span class="status-icon" id="icon-email"></span>
+    </div>
+    <div class="hint" id="emailHint">⚠️ Email 格式不正確</div>
+
+    <label id="labelPassword">密碼：</label>
+    <div class="input-group">
+      <input type="password" id="password" required />
+      <span class="status-icon" id="icon-password"></span>
+      <button type="button" class="toggle-password" onclick="togglePassword('password', this)">👁️</button>
+    </div>
+    <div class="strength-bar"><div id="strengthLevel"></div></div>
+
+    <label id="labelConfirm">確認密碼：</label>
+    <div class="input-group">
+      <input type="password" id="confirmPassword" required />
+      <span class="status-icon" id="icon-confirm"></span>
+      <button type="button" class="toggle-password" onclick="togglePassword('confirmPassword', this)">👁️</button>
+    </div>
+
+    <button type="submit" id="btnRegister">註冊</button>
+  </form>
+</div>
+
+<script>
+  // === 多語系設定 ===
+  const langSelect = document.getElementById("langSelect");
+  const text = {
+    zh: {
+      title: "用戶註冊",
+      username: "使用者名稱：",
+      email: "電子郵件：",
+      password: "密碼：",
+      confirm: "確認密碼：",
+      register: "註冊",
+      invalidEmail: "⚠️ Email 格式不正確",
+      success: "註冊成功！",
+      pwMismatch: "密碼不一致！"
+    },
+    en: {
+      title: "User Registration",
+      username: "Username:",
+      email: "Email:",
+      password: "Password:",
+      confirm: "Confirm Password:",
+      register: "Register",
+      invalidEmail: "⚠️ Invalid Email Format",
+      success: "Registration Successful!",
+      pwMismatch: "Passwords do not match!"
+    }
+  };
+  function setLang(lang) {
+    document.getElementById("title").textContent = text[lang].title;
+    document.getElementById("labelUsername").textContent = text[lang].username;
+    document.getElementById("labelEmail").textContent = text[lang].email;
+    document.getElementById("labelPassword").textContent = text[lang].password;
+    document.getElementById("labelConfirm").textContent = text[lang].confirm;
+    document.getElementById("btnRegister").textContent = text[lang].register;
+    document.getElementById("emailHint").textContent = text[lang].invalidEmail;
+  }
+  langSelect.addEventListener("change", e => setLang(e.target.value));
+  setLang("zh");
+
+  // === 顯示 / 隱藏密碼 ===
+  function togglePassword(inputId, btn) {
+    const input = document.getElementById(inputId);
+    if(input.type === "password") { input.type="text"; btn.textContent="🙈"; }
+    else { input.type="password"; btn.textContent="👁️"; }
+  }
+
+  // === 即時驗證 ===
+  const emailInput = document.getElementById("email");
+  const emailHint = document.getElementById("emailHint");
+  const iconEmail = document.getElementById("icon-email");
+  emailInput.addEventListener("input", function() {
+    const pattern = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+    if(pattern.test(emailInput.value)) {
+      emailInput.classList.add("valid"); emailInput.classList.remove("invalid"); iconEmail.textContent="✅"; emailHint.style.display="none";
+    } else { emailInput.classList.add("invalid"); emailInput.classList.remove("valid"); iconEmail.textContent="❌"; emailHint.style.display="block"; }
+  });
+
+  const usernameInput = document.getElementById("username");
+  const iconUsername = document.getElementById("icon-username");
+  usernameInput.addEventListener("input", ()=> {
+    if(usernameInput.value.length>=3){ usernameInput.classList.add("valid"); usernameInput.classList.remove("invalid"); iconUsername.textContent="✅"; }
+    else{ usernameInput.classList.add("invalid"); usernameInput.classList.remove("valid"); iconUsername.textContent="❌"; }
+  });
+
+  // === 密碼強度檢測 ===
+  const passwordInput = document.getElementById("password");
+  const strengthLevel = document.getElementById("strengthLevel");
+  const iconPassword = document.getElementById("icon-password");
+  passwordInput.addEventListener("input", ()=>{
+    const val = passwordInput.value; let strength=0;
+    if(val.length>=6) strength++; if(/[A-Z]/.test(val)) strength++; if(/[a-z]/.test(val)) strength++; if(/[0-9]/.test(val)) strength++; if(/[^A-Za-z0-9]/.test(val)) strength++;
+    let color="#ddd";
+    switch(strength){ case 1: color="red"; break; case 2: color="orange"; break; case 3: color="yellow"; break; case 4: color="limegreen"; break; case 5: color="green"; break; }
+    strengthLevel.style.width=(strength/5*100)+"%"; strengthLevel.style.background=color;
+    if(strength>=3){ passwordInput.classList.add("valid"); passwordInput.classList.remove("invalid"); iconPassword.textContent="✅"; }
+    else{ passwordInput.classList.add("invalid"); passwordInput.classList.remove("valid"); iconPassword.textContent="❌"; }
+  });
+
+  // === 確認密碼檢查 ===
+  const confirmInput=document.getElementById("confirmPassword");
+  const iconConfirm=document.getElementById("icon-confirm");
+  confirmInput.addEventListener("input", ()=>{
+    if(confirmInput.value===passwordInput.value && confirmInput.value!==""){ confirm
