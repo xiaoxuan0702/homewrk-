@@ -14,4 +14,4 @@
 ## 二、實作步驟
 ![螢幕擷取畫面 2025-10-29 113733](https://github.com/user-attachments/assets/8887022b-e4c2-45b0-ae0d-fb5b7270a39e)
 ## 三、實作
-#  先讓gpt給一個簡單html介面
+# 先讓gpt給一個簡單html介面
