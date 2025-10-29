@@ -21,7 +21,7 @@
         
 <img width="1919" height="966" alt="image" src="https://github.com/user-attachments/assets/0619d210-3cae-472f-a660-83c2f2619aca" />
 
-  ### 2.修改樣式
+  ### 2.修改"樣式"
   
   <img width="931" height="745" alt="螢幕擷取畫面 2025-10-29 134657" src="https://github.com/user-attachments/assets/d81b0cab-2186-4a55-8fcc-26262359b44b" />
   <img width="1902" height="913" alt="image" src="https://github.com/user-attachments/assets/22965ad3-a615-4ea2-91be-3d8b44f5f04c" />
@@ -32,7 +32,7 @@
 
 <img width="835" height="788" alt="image" src="https://github.com/user-attachments/assets/b0cc1151-4e92-4b7e-90d0-32789d6286b6" />
 
-   ### 4.也可以增加功能
+   ### 4.也可以增加"功能"
    <img width="917" height="751" alt="image" src="https://github.com/user-attachments/assets/ce815e1e-e95d-438a-90b5-32d09d70027e" />
    
    ### 執行結果
