@@ -15,6 +15,7 @@
 ![螢幕擷取畫面 2025-10-29 113733](https://github.com/user-attachments/assets/8887022b-e4c2-45b0-ae0d-fb5b7270a39e)
 ## 三、實作
    ### 1.先讓gpt給一個簡單html介面
+   
 <img width="942" height="741" alt="image" src="https://github.com/user-attachments/assets/5f9a7fd3-f8b3-46e3-8c32-652e31253c5c" />
 
    ### 執行結果
@@ -33,14 +34,17 @@
 <img width="835" height="788" alt="image" src="https://github.com/user-attachments/assets/b0cc1151-4e92-4b7e-90d0-32789d6286b6" />
    
    ### 輕鬆變換你想要的風格
+   
    <img width="862" height="782" alt="image" src="https://github.com/user-attachments/assets/c8c82c1d-a1a8-4738-89ed-43bc99bfa015" />
 <img width="1918" height="903" alt="image" src="https://github.com/user-attachments/assets/97ef22ee-dd46-4ca1-8060-8539e1fce4b3" />
 
    
    ### 4.也可以增加"功能"
+   
    <img width="917" height="751" alt="image" src="https://github.com/user-attachments/assets/ce815e1e-e95d-438a-90b5-32d09d70027e" />
    
    ### 執行結果
+   
 <img width="1898" height="912" alt="image" src="https://github.com/user-attachments/assets/cfaf741e-9c7e-485f-a927-cddf76e24518" />
 
    ### 4-1.增加安全驗證功能
@@ -48,10 +52,20 @@
    <img width="1107" height="716" alt="螢幕擷取畫面 2025-11-03 192340" src="https://github.com/user-attachments/assets/b2850c38-36e3-4302-9483-af5b7d95e421" />
 
    ### 執行結果
+   
    <img width="1280" height="907" alt="螢幕擷取畫面 2025-11-03 190745" src="https://github.com/user-attachments/assets/ec425095-7b9d-4826-9927-d60a737b0294" />
    <img width="922" height="876" alt="螢幕擷取畫面 2025-11-03 192255" src="https://github.com/user-attachments/assets/e479b215-bec8-4c2f-a97a-05bf40dba16b" />
+  
+   ### 4-2.加入Apple ID ,Google帳號註冊選項(但只能模擬)
    
+   <img width="1026" height="692" alt="image" src="https://github.com/user-attachments/assets/37851091-9dea-4357-8351-82f37c79563c" />
+ 
+   ### 執行結果
+   
+   <img width="1105" height="918" alt="螢幕擷取畫面 2025-11-03 224559" src="https://github.com/user-attachments/assets/2aea9ad4-460f-490d-88fe-8c16542582f6" />
+
    ### 5.測試與調整
+   
 <img width="1902" height="913" alt="image" src="https://github.com/user-attachments/assets/e1f8b8fa-3c29-4229-80c6-765ebc536675" />
 <img width="1902" height="915" alt="image" src="https://github.com/user-attachments/assets/8ec7738c-a4cf-479c-864c-7928022005c7" />
 
