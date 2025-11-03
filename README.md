@@ -66,7 +66,7 @@
 
    ### 5.測試與調整
    
-<img width="1902" height="913" alt="image" src="https://github.com/user-attachments/assets/e1f8b8fa-3c29-4229-80c6-765ebc536675" />
-<img width="1902" height="915" alt="image" src="https://github.com/user-attachments/assets/8ec7738c-a4cf-479c-864c-7928022005c7" />
+<img width="1025" height="882" alt="image" src="https://github.com/user-attachments/assets/815a5cc7-9ddb-49f9-a02e-f8051026b607" />
+<img width="1017" height="883" alt="image" src="https://github.com/user-attachments/assets/f79b662c-36a1-4bd7-89a8-53c4c1a23b50" />
 
   ### 測進行功能測試以確認系統能夠正常運作，並在測試後進行最後的修整與優化，確保整體運作穩定且符合預期。
