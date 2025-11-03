@@ -1,195 +1,166 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>科技感註冊頁面（含滑塊與密碼驗證）</title>
-  <style>
-    body {
-      font-family: "Segoe UI", sans-serif;
-      margin: 0;
-      height: 100vh;
-      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>科技感註冊頁面（整合版）</title>
+<style>
+body {
+  font-family: "Segoe UI", sans-serif;
+  margin: 0;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+}
 
-    .register-container {
-      display: flex;
-      background-color: #1c1c1c;
-      border-radius: 12px;
-      overflow: hidden;
-      width: 700px;
-      box-shadow: 0 0 20px rgba(0,255,255,0.3);
-      transition: transform 0.3s;
-    }
+/* 頂部標題 */
+.page-title {
+  text-align: center;
+  color: #00f0ff;
+  font-size: 28px;
+  letter-spacing: 1px;
+  margin: 20px 0;
+}
 
-    .register-container:hover { transform: scale(1.02); }
+/* 註冊容器 */
+.register-container {
+  display: flex;
+  background-color: #1c1c1c;
+  border-radius: 12px;
+  overflow: hidden;
+  width: 720px;
+  box-shadow: 0 0 20px rgba(0,255,255,0.3);
+}
 
-    .left-panel {
-      flex: 1;
-      background: url('https://images.unsplash.com/photo-1603791440384-56cd371ee9b9?auto=format&fit=crop&w=700&q=80') center/cover no-repeat;
-    }
+/* 左側第三方登入 */
+.left-panel {
+  flex: 1;
+  position: relative;
+  background: url('https://images.unsplash.com/photo-1603791440384-56cd371ee9b9?auto=format&fit=crop&w=700&q=80') center/cover no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+}
 
-    .right-panel {
-      flex: 1;
-      padding: 40px;
-      background-color: #1c1c1c;
-      color: #00f0ff;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
+.third-party-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 160px;
+  padding: 10px;
+  border-radius: 8px;
+  font-weight: bold;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.3s;
+  border: none;
+  font-size: 14px;
+}
+.apple-btn { background: #000; }
+.apple-btn:hover { background: #333; }
+.google-btn { background: #4285F4; }
+.google-btn:hover { background: #357ae8; }
 
-    h2 {
-      margin: 0 0 25px 0;
-      color: #00f0ff;
-      font-size: 28px;
-      text-align: center;
-      letter-spacing: 1px;
-    }
+/* 右側表單 */
+.right-panel {
+  flex: 1;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  color: #00f0ff;
+}
 
-    .form-group {
-      margin-bottom: 20px;
-      display: flex;
-      flex-direction: column;
-    }
+input, button {
+  width: 100%;
+  padding: 12px;
+  border-radius: 6px;
+  border: none;
+  margin-bottom: 15px;
+}
 
-    label { margin-bottom: 5px; font-weight: 500; color: #00f0ff; }
+input { background-color: #2c2c2c; color: #fff; font-size: 14px; outline: none; }
+input:focus { box-shadow: 0 0 8px #00f0ff; }
 
-    input {
-      padding: 12px;
-      border-radius: 6px;
-      border: none;
-      outline: none;
-      background-color: #2c2c2c;
-      color: #fff;
-      font-size: 14px;
-      transition: 0.3s;
-    }
+.password-wrapper { display:flex; align-items:center; gap:10px; }
+.password-wrapper input { flex:1; }
+.show-password-inline { font-size:0.85em; cursor:pointer; color:#00f0ff; display:flex; align-items:center; }
 
-    input:focus { box-shadow: 0 0 8px #00f0ff; }
+.password-match { font-size: 0.8em; margin-top:5px; }
+.password-match.valid { color:#4dff4d; }
+.password-match.invalid { color:#ff4d4d; }
 
-    .password-wrapper {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
+button {
+  background: linear-gradient(90deg,#00f0ff,#0077ff);
+  color:#fff;
+  font-weight:bold;
+  cursor:pointer;
+  transition:0.3s;
+}
 
-    .password-wrapper input { flex: 1; }
+button:hover {
+  transform: scale(1.05);
+  background: linear-gradient(90deg,#0077ff,#00f0ff);
+}
 
-    .show-password-inline {
-      font-size: 0.85em;
-      cursor: pointer;
-      color: #00f0ff;
-      display: flex;
-      align-items: center;
-    }
+/* 拼圖滑塊驗證 */
+.slider-container { position:relative; width:100%; height:200px; background:#222; border-radius:10px; overflow:hidden; margin-bottom:15px; }
+canvas { position:absolute; top:0; left:0; border-radius:10px; }
+.slider { position:relative; width:100%; height:40px; background:#333; border-radius:6px; display:flex; align-items:center; margin-bottom:15px; }
+.slider-btn { width:40px; height:40px; background:#00f0ff; border-radius:6px; cursor:grab; transition:0.3s; }
+.slider-text { position:absolute; width:100%; text-align:center; color:#aaa; font-size:14px; pointer-events:none; }
+.success { color:#4dff4d; }
 
-    .password-match { font-size: 0.8em; margin-top: 5px; }
-    .password-match.valid { color: #4dff4d; }
-    .password-match.invalid { color: #ff4d4d; }
-
-    button {
-      padding: 12px;
-      border: none;
-      border-radius: 8px;
-      background: linear-gradient(90deg, #00f0ff, #0077ff);
-      color: #fff;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    button:hover {
-      background: linear-gradient(90deg, #0077ff, #00f0ff);
-      transform: scale(1.05);
-    }
-
-    /* === 滑塊驗證區 === */
-    .slider-container {
-      position: relative;
-      width: 100%;
-      height: 200px;
-      background: #222;
-      margin-top: 15px;
-      border-radius: 10px;
-      overflow: hidden;
-    }
-
-    canvas {
-      position: absolute;
-      top: 0;
-      left: 0;
-      border-radius: 10px;
-    }
-
-    .slider {
-      position: relative;
-      width: 100%;
-      height: 40px;
-      background: #333;
-      border-radius: 6px;
-      margin-top: 10px;
-      display: flex;
-      align-items: center;
-    }
-
-    .slider-btn {
-      width: 40px;
-      height: 40px;
-      background: #00f0ff;
-      border-radius: 6px;
-      cursor: grab;
-      transition: background 0.3s;
-    }
-
-    .slider-text {
-      position: absolute;
-      width: 100%;
-      text-align: center;
-      color: #aaa;
-      font-size: 14px;
-      pointer-events: none;
-    }
-
-    .success { color: #4dff4d; }
-  </style>
+</style>
 </head>
 <body>
+
+<!-- 頂部標題 -->
+<h2 class="page-title">註冊帳號</h2>
+
 <div class="register-container">
-  <div class="left-panel"></div>
+  <!-- 左側第三方登入 -->
+  <div class="left-panel">
+    <button class="third-party-btn apple-btn">
+      <img src="https://img.icons8.com/ios-filled/24/ffffff/mac-os.png"/> Apple ID
+    </button>
+    <button class="third-party-btn google-btn">
+      <img src="https://img.icons8.com/color/24/ffffff/google-logo.png"/> Google
+    </button>
+  </div>
+
+  <!-- 右側本地註冊表單 -->
   <div class="right-panel">
-    <h2>註冊帳號</h2>
     <form id="registerForm">
       <div class="form-group">
         <label for="username">用戶名</label>
         <input type="text" id="username" placeholder="輸入用戶名" required>
       </div>
-
       <div class="form-group">
         <label for="email">Email</label>
         <input type="email" id="email" placeholder="輸入 Email" required>
       </div>
-
       <div class="form-group password-group">
         <label for="password">密碼</label>
         <div class="password-wrapper">
-          <input type="password" id="password" name="password" required placeholder="輸入密碼" minlength="6">
+          <input type="password" id="password" placeholder="輸入密碼" required minlength="6">
           <label class="show-password-inline">
             <input type="checkbox" id="togglePassword"> 顯示
           </label>
         </div>
       </div>
-
       <div class="form-group">
         <label for="confirmPassword">確認密碼</label>
-        <input type="password" id="confirmPassword" name="confirmPassword" required placeholder="再次輸入密碼" minlength="6">
+        <input type="password" id="confirmPassword" placeholder="再次輸入密碼" required minlength="6">
         <div id="passwordMatch" class="password-match"></div>
       </div>
 
-      <!-- 滑塊驗證 -->
+      <!-- 拼圖滑塊驗證 -->
       <div class="slider-container">
         <canvas id="bgCanvas" width="300" height="150"></canvas>
         <canvas id="blockCanvas" width="300" height="150"></canvas>
@@ -205,20 +176,19 @@
 </div>
 
 <script>
+// 密碼顯示 & 一致檢查
 const togglePassword = document.getElementById('togglePassword');
 const passwordInput = document.getElementById('password');
 const confirmPasswordInput = document.getElementById('confirmPassword');
 const passwordMatchDiv = document.getElementById('passwordMatch');
 const form = document.getElementById('registerForm');
 
-// 顯示/隱藏密碼
 togglePassword.addEventListener('change', () => {
   const type = togglePassword.checked ? 'text' : 'password';
   passwordInput.type = type;
   confirmPasswordInput.type = type;
 });
 
-// 即時檢查密碼是否一致
 function checkPasswordMatch() {
   if(confirmPasswordInput.value === "") {
     passwordMatchDiv.textContent = "";
@@ -233,99 +203,85 @@ function checkPasswordMatch() {
     passwordMatchDiv.className = "password-match invalid";
   }
 }
-
 passwordInput.addEventListener('input', checkPasswordMatch);
 confirmPasswordInput.addEventListener('input', checkPasswordMatch);
 
-// === 拼圖滑塊驗證 ===
+// 拼圖滑塊驗證
 const bgCanvas = document.getElementById('bgCanvas');
 const blockCanvas = document.getElementById('blockCanvas');
 const ctx = bgCanvas.getContext('2d');
 const blockCtx = blockCanvas.getContext('2d');
-const slider = document.getElementById('slider');
 const sliderBtn = document.getElementById('sliderBtn');
 const sliderText = document.getElementById('sliderText');
 
 const L = 40;
-let x = 0, y = 0;
-let isDragging = false;
-let startX;
-let puzzleX;
-let success = false;
+let x=0,y=0,isDragging=false,startX,puzzleX,success=false;
 
 const img = new Image();
 img.crossOrigin = "Anonymous";
 img.src = "https://picsum.photos/300/150?random=" + Math.random();
-
-img.onload = () => {
-  drawPuzzle();
-};
+img.onload = () => { drawPuzzle(); }
 
 function drawPuzzle() {
-  ctx.drawImage(img, 0, 0, 300, 150);
-  x = Math.floor(Math.random() * (300 - L*2) + L);
-  y = Math.floor(Math.random() * (150 - L));
+  ctx.drawImage(img,0,0,300,150);
+  x = Math.floor(Math.random()*(300-L*2)+L);
+  y = Math.floor(Math.random()*(150-L));
   puzzleX = x;
-
-  blockCtx.clearRect(0, 0, 300, 150);
-  const piece = ctx.getImageData(x, y, L, L);
-  blockCtx.putImageData(piece, 0, y);
+  blockCtx.clearRect(0,0,300,150);
+  const piece = ctx.getImageData(x,y,L,L);
+  blockCtx.putImageData(piece,0,y);
 }
 
-sliderBtn.addEventListener('mousedown', e => {
-  if (success) return;
-  isDragging = true;
-  startX = e.clientX;
-  sliderBtn.style.cursor = 'grabbing';
+sliderBtn.addEventListener('mousedown',e=>{
+  if(success) return;
+  isDragging=true; startX=e.clientX;
+  sliderBtn.style.cursor='grabbing';
 });
-
-document.addEventListener('mousemove', e => {
-  if (!isDragging) return;
-  let moveX = e.clientX - startX;
-  if (moveX < 0) moveX = 0;
-  if (moveX > 260) moveX = 260;
-  sliderBtn.style.transform = `translateX(${moveX}px)`;
-  blockCanvas.style.left = moveX + 'px';
+document.addEventListener('mousemove',e=>{
+  if(!isDragging) return;
+  let moveX = e.clientX-startX;
+  if(moveX<0) moveX=0;
+  if(moveX>260) moveX=260;
+  sliderBtn.style.transform=`translateX(${moveX}px)`;
+  blockCanvas.style.left=moveX+'px';
 });
-
-document.addEventListener('mouseup', e => {
-  if (!isDragging) return;
-  isDragging = false;
-  const moveX = e.clientX - startX;
-  if (Math.abs(moveX - puzzleX) < 5) {
-    success = true;
-    sliderText.textContent = "驗證成功 ✅";
+document.addEventListener('mouseup',e=>{
+  if(!isDragging) return;
+  isDragging=false;
+  const moveX = e.clientX-startX;
+  if(Math.abs(moveX-puzzleX)<5){
+    success=true;
+    sliderText.textContent="驗證成功 ✅";
     sliderText.classList.add("success");
-    sliderBtn.style.background = "#4dff4d";
+    sliderBtn.style.background="#4dff4d";
   } else {
-    sliderText.textContent = "驗證失敗 ❌ 再試一次";
-    sliderBtn.style.transform = `translateX(0px)`;
-    blockCanvas.style.left = '0px';
+    sliderText.textContent="驗證失敗 ❌ 再試一次";
+    sliderBtn.style.transform=`translateX(0px)`;
+    blockCanvas.style.left='0px';
   }
-  sliderBtn.style.cursor = 'grab';
+  sliderBtn.style.cursor='grab';
 });
 
-// === 表單提交 ===
-form.addEventListener('submit', e => {
+// 表單提交
+form.addEventListener('submit', e=>{
   e.preventDefault();
-  if (!success) {
-    alert("請先完成拼圖驗證！");
-    return;
-  }
-  if (passwordInput.value !== confirmPasswordInput.value) {
-    alert("密碼不一致，請重新輸入！");
-    return;
-  }
+  if(!success){ alert("請先完成拼圖驗證！"); return; }
+  if(passwordInput.value !== confirmPasswordInput.value){ alert("密碼不一致！"); return; }
   alert("註冊成功 ✅");
   form.reset();
-  success = false;
-  sliderText.textContent = "向右拖動滑塊完成驗證";
+  success=false;
+  sliderText.textContent="向右拖動滑塊完成驗證";
   sliderText.classList.remove("success");
-  sliderBtn.style.background = "#00f0ff";
-  sliderBtn.style.transform = `translateX(0px)`;
-  blockCanvas.style.left = '0px';
+  sliderBtn.style.background="#00f0ff";
+  sliderBtn.style.transform=`translateX(0px)`;
+  blockCanvas.style.left='0px';
   drawPuzzle();
 });
+
+// 第三方模擬
+document.querySelector('.apple-btn').addEventListener('click',()=>{ alert("導向 Apple OAuth 註冊流程"); });
+document.querySelector('.google-btn').addEventListener('click',()=>{ alert("導向 Google OAuth 註冊流程"); });
 </script>
+
 </body>
 </html>
